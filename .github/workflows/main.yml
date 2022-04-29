@@ -16,7 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: mkrakowitzer/actions-makepdfs@master
-      if: github.ref == 'refs/heads/master'
       with:
         markdown_dir: doc
         output_dir: tmp
@@ -24,12 +23,3 @@ jobs:
       with:
         name: platform-architecture-docs
         path: tmp
-
-    - name: commit
-      run: |
-        pwd
-        git config --global user.email ${{ secrets.EMAIL }}
-        git config --global user.name ${{ secrets.USERNAME }}
-        git add .
-        git commit -m "update"
-        git push
